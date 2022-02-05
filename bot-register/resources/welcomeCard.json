@@ -1,0 +1,22 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
+    {
+      "type": "Image",
+      "url": "https://smsolucoesdigital.com/wp-content/uploads/2021/03/mascote-sm-bot.png",
+      "size": "stretch"
+    },
+    {
+      "type": "TextBlock",
+      "spacing": "medium",
+      "size": "default",
+      "weight": "bolder",
+      "text": "Bem Vindo ao fluxo de diálogo",
+      "wrap": true,
+      "maxLines": 0
+    }
+  ]
+  
+}
