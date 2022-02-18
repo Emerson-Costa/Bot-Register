@@ -1,4 +1,6 @@
 const {RegistrationDialog} = require('./registrationDialog');
+// Importando as mensagens para o uso no prompt.
+const {Messages} = require('./messages');
 
 const {
     WaterfallDialog,
@@ -9,27 +11,20 @@ const {
 } = require('botbuilder-dialogs');
 
 const {InputHints} = require('botbuilder');
-const {LuisRecognizer} = require('botbuilder-ai');
-
+const {RegistrationRecognizer} = require('./registrationRecognizer');
 
 const OPTION_PROMPT    = 'OPTION_PROMPT'    ;
 const WATERFALL_DIALOG = 'WATERFALL_DIALOG' ;
 const USER_PROFILE     = 'USER_PROFILE'     ;
 
-
 class MainDialog extends ComponentDialog {
     constructor(userState, luisConfig){
         super('MainDialog');
         
-        this.registrationDialog = new RegistrationDialog('RegistrationDialog');
-
-        const luisIsConfigured = luisConfig && luisConfig.applicationId && luisConfig.endpointKey && luisConfig.endpoint;
-        if(luisIsConfigured){
-            const recognizerOptions = {apiVersion: 'v3'};
-            this.luisRecognize = new LuisRecognizer(luisConfig,recognizerOptions);
-        }
-    
+        this.registrationRecognizer = new RegistrationRecognizer(luisConfig);
+        this.registrationDialog = new RegistrationDialog(luisConfig);
         this.userProfile = userState.createProperty(USER_PROFILE);
+        this.promptMessage = new Messages();
         
         this.addDialog(new TextPrompt(OPTION_PROMPT))
             .addDialog(this.registrationDialog)
@@ -54,15 +49,13 @@ class MainDialog extends ComponentDialog {
     }
 
     async indiceStep(step){
-         const msg = 'O que eu posso fazer por você?'
-         return await step.prompt(OPTION_PROMPT, msg );
+        return await step.prompt(OPTION_PROMPT, this.promptMessage.greeting());
     }
-
+    
     async optionStep(step){ 
-        const op = await this.luisRecognize.recognize( step.context );
-        if(LuisRecognizer.topIntent(op) != 'IncluirRegistro' ){
-            const msg = `Desculpe, por enquanto eu só fui programado para fazer registros!`;
-            await step.context.sendActivity(msg, msg, InputHints.IgnoringInput);
+        const op = await this.registrationRecognizer.executeQuery(step.context);
+        if( this.registrationRecognizer.getOption(op) != 'IncluirRegistro' ){
+            await step.context.sendActivity(this.promptMessage.sorry(), this.promptMessage.sorry(), InputHints.IgnoringInput);
         } else {
             return await step.beginDialog('RegistrationDialog');
         }

@@ -11,7 +11,6 @@
  
  const restify = require('restify');
  
- // Imports Class
  const {
      CloudAdapter,
      ConfigurationServiceClientCredentialFactory,
@@ -22,14 +21,9 @@
      UserState
  } = require('botbuilder');
  
- 
- // This bot's main dialog.
+ // importando os bots de diálogo
  const { DialogAndWelcomeBot } = require('./bots/dialogAndWelcomeBot');
  const { MainDialog }         = require('./dialogs/mainDialog');
- 
- // implementing the bot's booking dialog
- 
- // logins and credentials
  
  const credentialsFactory = new ConfigurationServiceClientCredentialFactory({
      MicrosoftAppId: process.env.MicrosoftAppId,
@@ -40,7 +34,6 @@
  
  const botFrameworkAuthentication = createBotFrameworkAuthenticationFromConfiguration(null, credentialsFactory);
  
- // Create adapter.
  const adapter = new CloudAdapter(botFrameworkAuthentication);
  
  const onTurnErrorHandler = async (context, error) => {
@@ -58,23 +51,22 @@
      await conversationState.delete(context);
  };
  
- // Set the onTurnError for the singleton CloudAdapter.
  adapter.onTurnError = onTurnErrorHandler;
  
- // Memory Register
+ // Registros de Memória.
  const memoryStorage = new MemoryStorage();
  const conversationState = new ConversationState(memoryStorage);
  const userState = new UserState(memoryStorage);
  
- // If configured, pass in the FlightBookingRecognizer.  (Defining it externally allows it to be mocked for tests)
+ // Configuração externa do Luis no projeto.
  const { LuisAppId, LuisAPIKey, LuisAPIHostName } = process.env;
  const luisConfig = { applicationId: LuisAppId, endpointKey: LuisAPIKey, endpoint: `https://${ LuisAPIHostName }` };
  
- // Create the main dialog.
+ // Criação do diálogo principal.
  const dialog = new MainDialog(userState, luisConfig);
  const bot = new DialogAndWelcomeBot(conversationState, userState, dialog);
  
- // Create HTTP server
+ // Criação do servidor HTTP.
  const server = restify.createServer();
  server.use(restify.plugins.bodyParser());
  
@@ -84,12 +76,12 @@
      console.log('\nTo talk to your bot, open the emulator select "Open Bot"');
  });
  
- // Routes.
+ // Rotas.
  server.post('/api/messages', async (req, res) => {
      await adapter.process(req, res, (context) => bot.run(context));
  });
  
- // Listen for Upgrade requests for Streaming.
+ // aguardando as solicitações para a atualização de streaming.
  server.on('upgrade', async (req, socket, head) => {
      const streamingAdapter = new CloudAdapter(botFrameworkAuthentication);
      streamingAdapter.onTurnError = onTurnErrorHandler;

@@ -1,0 +1,221 @@
+{
+  "luis_schema_version": "7.0.0",
+  "intents": [
+    {
+      "name": "IncluirRegistro",
+      "features": []
+    },
+    {
+      "name": "None",
+      "features": []
+    }
+  ],
+  "entities": [],
+  "hierarchicals": [],
+  "composites": [],
+  "closedLists": [],
+  "prebuiltEntities": [],
+  "utterances": [
+    {
+      "text": "alterar cadastro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "alterar registro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "apagar cadastro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "apagar o cadastro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cadastrar",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "cadastro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "estou afim de cadastrar",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "estou afim de incluir dados",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "estrou afim de registrar",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "eu preciso alterar o meu registro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "excluir cadastro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "excluir registro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "incluir registro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "mudar o meu cadastro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "mudar o meu registro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "preciso cadastrar",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "preciso excluir a minha conta",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "preciso registrar",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "quero alterar o meu registro.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "quero alterar o registro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "quero apagar o meu registro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "quero cadastrar",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "quero deletar o meu regitro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "quero excluir o meu registro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "quero fazer registro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "quero fazer um cadastro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "quero incluir um registro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "quero mudar o cadastro",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "quero realizar um cadastro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "quero realizar um registro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "quero registrar",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "realizar um registro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "registrar",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "registro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "vou incluir um registro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "vou ralizar um cadastro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "vou realizar um registro",
+      "intent": "IncluirRegistro",
+      "entities": []
+    },
+    {
+      "text": "vou registrar",
+      "intent": "IncluirRegistro",
+      "entities": []
+    }
+  ],
+  "versionId": "0.1",
+  "name": "RegisterFlow",
+  "desc": "",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "phraselists": [],
+  "regex_features": [],
+  "patterns": [],
+  "settings": []
+}

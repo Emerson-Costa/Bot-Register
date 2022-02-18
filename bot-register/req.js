@@ -26,7 +26,12 @@ function celFormat(cel) {
   cel = cel.replace(/[^\d]/g, "");
   //realizar a formatação...
     return cel.replace(/(\d{5})(\d{4})/, "$1-$2"); 
-}    
+} 
+
+// Formatar saída de Data Americana para PT-BR
+let dateFormatBrasilian = (data) => data.split('-').reverse().join('/');
+
+
 
 console.log(celFormat('98160-2417'))
 
