@@ -1,33 +1,24 @@
 const { default: axios } = require('axios');
 
+/**
+ * Classe para fazer requisição da API VIACEP.
+ * @class
+ */
 class CepAPI {
-    constructor(cep){
-        this.cep = cep;
-    }
+    /**
+     * Construtor vazio.
+     * @constructor
+     */
+    constructor( ){ }
 
-    async localidade(){
-        let result =  await axios.get(`https://viacep.com.br/ws/${this.cep}/json/`);
-        return result.data.localidade;
+    /**
+     * Método para buscar o endereço pelo numero do cep.
+     * @param {String} cep - cep do endereço informado pelo usuário
+     * @returns {Promise}
+     */
+    async dataRequitition(cep) {
+        return await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
     }
-
-    async logradouro(){
-        let result =  await axios.get(`https://viacep.com.br/ws/${this.cep}/json/`);
-        return result.data.logradouro;
-    }
-
-    async bairro(){
-        let result = await axios.get(`https://viacep.com.br/ws/${this.cep}/json/`);
-        return result.data.bairro;
-    }
-
-    async localidade(){
-        let result = await axios.get(`https://viacep.com.br/ws/${this.cep}/json/`);
-        return result.data.localidade;
-    }
-
-    async uf(){
-        let result = await axios.get(`https://viacep.com.br/ws/${this.cep}/json/`);
-        return result.data.uf;
-    }   
 }
+
 module.exports.CepAPI = CepAPI;

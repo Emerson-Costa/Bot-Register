@@ -87,4 +87,3 @@
      streamingAdapter.onTurnError = onTurnErrorHandler;
      await streamingAdapter.process(req, socket, head, (context) => bot.run(context));
  });
- 

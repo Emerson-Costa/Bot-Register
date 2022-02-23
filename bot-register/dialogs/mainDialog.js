@@ -1,6 +1,7 @@
 const {RegistrationDialog} = require('./registrationDialog');
-// Importando as mensagens para o uso no prompt.
-const {Messages} = require('./messages');
+
+/**@module insert - Importação do módulo de mensagem da aplicação*/
+const insert = require('./messages');
 
 const {
     WaterfallDialog,
@@ -10,21 +11,54 @@ const {
     DialogTurnStatus,
 } = require('botbuilder-dialogs');
 
-const {InputHints} = require('botbuilder');
+const {InputHints, UserState} = require('botbuilder');
 const {RegistrationRecognizer} = require('./registrationRecognizer');
 
+/**
+ *  Tag para escolha de opção via prompt
+ *  @type {string}
+ */
 const OPTION_PROMPT    = 'OPTION_PROMPT'    ;
+
+/**
+ *  Tag para criação de uma casacata de diálogo.
+ *  @type {string}
+ */
 const WATERFALL_DIALOG = 'WATERFALL_DIALOG' ;
+
+/**
+ *  Tag para salvar o estado de usuário
+ *  @type {string}
+ */
 const USER_PROFILE     = 'USER_PROFILE'     ;
 
+/**
+ * Classe principal onde fará o acesso a outros compenentes do sistema.
+ * @class
+ */
 class MainDialog extends ComponentDialog {
+
+    /**
+     * @param {*} userState 
+     * @param {*} luisConfig
+     */
     constructor(userState, luisConfig){
         super('MainDialog');
-        
+
+        /**
+         * Instância dos serviços do Luis.
+         * @type {InstanceType} */
         this.registrationRecognizer = new RegistrationRecognizer(luisConfig);
+
+        /**
+         * Instância da classe de registro de diálogo.
+         * @type {InstanceType} */
         this.registrationDialog = new RegistrationDialog(luisConfig);
+
+        /**
+         * Instância do estado de usuário.
+         * @type {UserState} */
         this.userProfile = userState.createProperty(USER_PROFILE);
-        this.promptMessage = new Messages();
         
         this.addDialog(new TextPrompt(OPTION_PROMPT))
             .addDialog(this.registrationDialog)
@@ -34,6 +68,10 @@ class MainDialog extends ComponentDialog {
             this.finalStep.bind(this)
         ]));
         
+        /**
+         * Aqui será marcado a ID do início de um diálogo.
+         * @type {string}
+         */
         this.initialDialogId = WATERFALL_DIALOG;
     }
 
@@ -49,13 +87,19 @@ class MainDialog extends ComponentDialog {
     }
 
     async indiceStep(step){
-        return await step.prompt(OPTION_PROMPT, this.promptMessage.greeting());
+        return await step.prompt(OPTION_PROMPT, insert.messages.greeting);
     }
     
     async optionStep(step){ 
+
+        /**
+         * Recebe uma promessa referente ao contexto buscado no serviço do Luis.
+         * @type {Promise}
+         */
         const op = await this.registrationRecognizer.executeQuery(step.context);
+
         if( this.registrationRecognizer.getOption(op) != 'IncluirRegistro' ){
-            await step.context.sendActivity(this.promptMessage.sorry(), this.promptMessage.sorry(), InputHints.IgnoringInput);
+            await step.context.sendActivity(insert.messages.sorry, insert.messages.sorry, InputHints.IgnoringInput);
         } else {
             return await step.beginDialog('RegistrationDialog');
         }

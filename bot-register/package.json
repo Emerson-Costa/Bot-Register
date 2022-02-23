@@ -23,6 +23,7 @@
         "botbuilder-dialogs": "~4.15.0",
         "botbuilder-testing": "~4.15.0",
         "dotenv": "^8.2.0",
+        "jsdoc": "^3.6.10",
         "restify": "^8.5.1"
     },
     "devDependencies": {
