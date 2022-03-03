@@ -1,4 +1,4 @@
-# botRegister
+# Bot Register
 <p>
     &nbsp;&nbsp;&nbsp;&nbsp;Projeto Simples feito com o Bot Framework da Microsoft, o bot realiza o cadastro do usuário no sistema e utiliza o LUIS,
     que está incluso nos serviços cognitivos da Azure, para fazer o reconhecimento das intenções do usuário utilizando entidades
