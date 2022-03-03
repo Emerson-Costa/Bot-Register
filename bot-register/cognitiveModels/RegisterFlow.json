@@ -14,7 +14,12 @@
   "hierarchicals": [],
   "composites": [],
   "closedLists": [],
-  "prebuiltEntities": [],
+  "prebuiltEntities": [
+    {
+      "name": "number",
+      "roles": []
+    }
+  ],
   "utterances": [
     {
       "text": "alterar cadastro",
@@ -213,7 +218,23 @@
   "culture": "en-us",
   "tokenizerVersion": "1.0.0",
   "patternAnyEntities": [],
-  "regex_entities": [],
+  "regex_entities": [
+    {
+      "name": "CEPnumber",
+      "regexPattern": "([0-9]{5})-?([0-9]{3}$)",
+      "roles": []
+    },
+    {
+      "name": "CPFnumber",
+      "regexPattern": "(\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}|\\d{11})",
+      "roles": []
+    },
+    {
+      "name": "Date",
+      "regexPattern": "((\\d{2}\\-\\d{2}\\-\\d{4})|(\\d{2}\\/\\d{2}\\/\\d{4}))",
+      "roles": []
+    }
+  ],
   "phraselists": [],
   "regex_features": [],
   "patterns": [],
